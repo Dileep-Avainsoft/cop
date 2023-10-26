@@ -25,7 +25,7 @@
                                     <a href="{{ route('brand.view')}} " class="btn btn-primary"> View Brand</a>
                                 </div>
 
-                                <form class="form theme-form" action="{{ route('brand.update', ['id' => encrypt($brand_edit->brand_id)]) }}" method="post" enctype="multipart/form-data">
+                                <form class="form theme-form" action="{{  route('brand.update', ['id' => encrypt($brand_edit->brand_id)]) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="card-body">
@@ -59,7 +59,7 @@
                                                         <span class="text-danger">{{ $errors->first('brand_name') }}</span>
                                                         @endif
                                                 </div>
-                                                <td><img src="{{ asset('brand/' . $brand_edit->brand_name . '/' . $brand_edit->brand_logo) }}"
+                                                <td><img src="{{ asset('brand/' . $brand_edit->brand_id . '/' . $brand_edit->brand_logo) }}"
                                                     width="100px"></td>
                                                 <div class="mb-3">
                                                     <label class="form-label" for="exampleInputPassword16">Brand Logo:</label>

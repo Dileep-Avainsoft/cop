@@ -61,7 +61,7 @@
                                                     <td>{{ $data->brand_name }}</td>
 
 
-                                                    <td><img src="{{ asset('brand/' . $data->brand_name . '/' . $data->brand_logo) }}"
+                                                    <td><img src="{{ asset('brand/' . $data->brand_id . '/' . $data->brand_logo) }}"
                                                             width="100px"></td>
 
 

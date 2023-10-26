@@ -50,7 +50,7 @@
                                 <!--                        <use href="assets/svg/icon-sprite.svg#fill-home"></use>-->
                             </svg><span>Brand</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a  href="/brand">Add</a></li>
+                            <li><a  href="{{ route('brand.create')}}">Add</a></li>
                             <li><a  href="/brand_v">View</a></li>
                         </ul>
                     </li>
