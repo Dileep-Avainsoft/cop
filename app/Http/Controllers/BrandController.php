@@ -38,8 +38,8 @@ class BrandController extends Controller
 
         $request->validate([
             'car_stage_id' => 'required',
-            'brand_name' => 'required',
-            'brand_logo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'brand_name' => 'required|regex:/^[A-Za-z0-9\s]+$/|min:5|max:20|unique:brand_name',
+            'brand_logo' => 'required|image|mimes:png,jpg,jpeg|max:2048|unique:brand_logo',
         ]);
 
         // Create a new Brand record with the WebP image
@@ -109,15 +109,45 @@ class BrandController extends Controller
 
         $request->validate([
             'car_stage_id' => 'required',
-            'brand_name' => 'required',
-            'brand_logo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'brand_name' => 'required|regex:/^[A-Za-z0-9\s]+$/|min:5|max:20|unique:brand_name',
+            'brand_logo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048|unique:brand_logo',
             // Remove 'webp' from mimes
         ]);
 
         $brand_update = Brand::where('brand_id', decrypt($id))->first();
 
 
+        $imagePath = 'brand/' . $brand_update->brand_id . '/' . $brand_update->brand_id;
 
+        if ($brand_update) {
+            if (isset($request->brand_logo)) {
+                File::deleteDirectory($imagePath);
+
+                $brand_id = $brand_update->brand_id;
+            $uploadedImage = $request->file('brand_logo');
+            $imageName = $brand_id . '.' . $uploadedImage->getClientOriginalExtension();
+            $webpImageName = $brand_id . '.webp';
+            $imagePath = public_path('brand') . '/' . $brand_id . '/' . $imageName;
+
+
+            $uploadedImage->move(public_path('brand') . '/' . $brand_id, $webpImageName);
+
+            // Run the cwebp command to convert the image to WebP
+            $cwebpCommand = "cwebp $imagePath -o  80"; // Set quality (adjust as needed)
+            exec($cwebpCommand);
+
+             // Update the brand_logo in the Brand record
+             $brand_update->brand_logo = $webpImageName;
+             $brand_update->update();
+            }
+            $brand_update->brand_name = $request->brand_name;
+            $brand_update->status = $request->has('status') ? 1 : 0;
+            $brand_update->update();
+
+            session()->flash('success', 'Brand updated successfully.');
+        } else {
+            session()->flash('error', 'Something went wrong!');
+        }
         return redirect()->route('brand.view');
 
 

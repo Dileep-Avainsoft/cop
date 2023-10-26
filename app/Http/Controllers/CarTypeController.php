@@ -106,10 +106,7 @@ class CarTypeController extends Controller
         if ($car_type_update) {
             if (isset($request->car_type_image)) {
                 File::deleteDirectory($imagePath);
-                // $fileExtension = $request->car_type_image->extension();
-                // $imageName = $car_type_update->car_type_id . '.' . $fileExtension;
-                // $request->car_type_image->move(public_path('CarType') . '/' . $car_type_update->car_type_id, $imageName);
-                // $car_type_update->car_type_image = $imageName;
+
                 $car_type_id = $car_type_update->car_type_id;
             $uploadedImage = $request->file('car_type_image');
             $imageName = $car_type_id . '.' . $uploadedImage->getClientOriginalExtension();
