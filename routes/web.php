@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarStageController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\CarTypeController;
 use App\Http\Controllers\SpecificationCategoryController;
 
 
@@ -69,6 +71,30 @@ Route::get('{id}/delete',[BrandController::class,'destroy'])->name('brand.delete
 
 });
 
+//feature
+Route::prefix('feature')->group(function () {
+    Route::get('create',[FeatureController::class,'create'])->name('feature.create');
+    Route::post('store',[FeatureController::class,'store'])->name('feature.store');
+    Route::get('view',[FeatureController::class,'view'])->name('feature.view');
+    Route::post('status',[FeatureController::class,'toggleStatus'])->name('feature.status');
+    Route::get('{id}/edit',[FeatureController::class,'edit'])->name('feature.edit');
+    Route::put('{id}/update',[FeatureController::class,'update'])->name('feature.update');
+    Route::get('{id}/delete',[FeatureController::class,'destroy'])->name('feature.delete');
+
+});
+
+//car_type route
+
+Route::prefix('car_type')->group(function () {
+    Route::get('create',[CarTypeController::class,'create'])->name('car_type.create');
+    Route::post('store',[CarTypeController::class,'store'])->name('car_type.store');
+    Route::get('view',[CarTypeController::class,'view'])->name('car_type.view');
+    Route::post('status',[CarTypeController::class,'toggleStatus'])->name('car_type.status');
+    Route::get('{id}/edit',[CarTypeController::class,'edit'])->name('car_type.edit');
+    Route::put('{id}/update',[CarTypeController::class,'update'])->name('car_type.update');
+    Route::get('{id}/delete',[CarTypeController::class,'destroy'])->name('car_type.delete');
+
+});
 
 
 });

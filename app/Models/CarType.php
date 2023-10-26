@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Car_Type extends Model
+class CarType extends Model
 {
+    protected $primaryKey ='car_type_id';
     use HasFactory;
 }

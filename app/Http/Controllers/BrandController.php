@@ -132,8 +132,8 @@ class BrandController extends Controller
 
         if ($brand) {
             // Define the file and folder paths
-            $filePath = public_path('brand') . '/' . $brand->brand_name . '/' . $brand->brand_logo;
-            $folderPath = public_path('brand') . '/' . $brand->brand_name;
+            $filePath = public_path('brand') . '/' . $brand->brand_id . '/' . $brand->brand_logo;
+            $folderPath = public_path('brand') . '/' . $brand->brand_id;
 
             // Check if the file exists and delete it
             if (File::exists($filePath)) {

@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feature extends Model
 {
+    protected $primaryKey ='feature_id';
     use HasFactory;
 }

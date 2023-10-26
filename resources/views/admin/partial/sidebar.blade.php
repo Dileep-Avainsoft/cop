@@ -213,7 +213,7 @@
                                 <!--                        <use href="assets/svg/icon-sprite.svg#fill-home"></use>-->
                             </svg><span>Car Type </span></a>
                         <ul class="sidebar-submenu">
-                            <li><a  href="#">Add</a></li>
+                            <li><a  href="{{ route('car_type.create')}}">Add</a></li>
                             <li><a  href="#">View</a></li>
                         </ul>
                     </li>

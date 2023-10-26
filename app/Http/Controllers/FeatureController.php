@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feature;
+use App\Models\Specification;
+use App\Models\Feature_Option;
 use Illuminate\Http\Request;
 
 class FeatureController extends Controller
@@ -20,7 +22,8 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        //
+
+
     }
 
     /**
